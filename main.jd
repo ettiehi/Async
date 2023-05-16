@@ -1,0 +1,91 @@
+
+//1.
+
+function displayCurrentDate() {
+    currentDate = new Date()
+    const days=[
+        'Sunday',
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday'
+    ]
+    const months =[
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December'
+    ]
+    const weekDay = days[currentDate.getDay()];
+    const month = months[currentDate.getMonth()];
+    const date = currentDate.getDate();
+    const year = currentDate.getFullYear();
+
+    return `Today is: ${weekDay}, ${date}, ${month} ${year}`
+   
+}
+
+console.log(displayCurrentDate())
+
+async function addDays(date, daysToAdd) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            try{
+                const newDate = new Date(date);
+                newDate.setDate(newDate.getDate() + daysToAdd);
+                resolve(newDate);
+            }catch (error){
+                reject(error)
+            }3000;
+        })
+    })
+}
+
+addDays(displayCurrentDate(),10).then((res)=> console.log(res))
+
+
+
+
+//2.
+let library = {
+    books: [
+        { title: 'Book 1', author: 'Author 1' },
+        { title: 'Book 2', author: 'Author 2' },
+        { title: 'Book 3', author: 'Author 1' },
+        { title: 'Book 4', author: 'Author 3' },
+        { title: 'Book 5', author: 'Author 2' },
+        { title: 'Book 6', author: 'Author 1' },
+        { title: 'Book 7', author: 'Author 3' },
+        { title: 'Book 8', author: 'Author 4' },
+        { title: 'Book 9', author: 'Author 4' },
+        { title: 'Book 10', author: 'Author 1' },
+        { title: 'Book 11', author: 'Author 5' },
+        { title: 'Book 12', author: 'Author 5' },
+        { title: 'Book 13', author: 'Author 1' },
+        { title: 'Book 14', author: 'Author 3' },
+        { title: 'Book 15', author: 'Author 2' },],
+
+        findBooksByAuother: function (authorName) {
+            const sortBooksByAuthor = this.books.filter((thisBook) => thisBook.author === authorName);
+            const titleArray = []
+            sortBooksByAuthor.filter((title) => titleArray.push(title.title))
+            return titleArray;
+           
+        }
+}
+
+console.log(library.findBooksByAuother('Author 1'))
+
+
+
+
